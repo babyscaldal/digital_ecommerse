@@ -8,7 +8,7 @@ import SkeletonItemCard from "./ItemSkeleton";
 
 interface IProductList {
   listItem?: IProductResponse[];
-  grid?: number;
+  grid?: number | null;
 }
 
 export default function ProductsList({ listItem, grid }: IProductList) {

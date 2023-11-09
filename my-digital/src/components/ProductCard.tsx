@@ -27,7 +27,7 @@ import {
 
 interface IProductCard {
   product: IProductResponse;
-  grid?: number;
+  grid?: number | null;
 }
 
 const ActionBar = styled.div`
@@ -110,8 +110,12 @@ export default function ProductCard({ product, grid }: IProductCard) {
 
   const favoriteProducts = useAppSelector(favoriteProductsState);
   const compareProducts = useAppSelector(compareProductsState);
-  const isFavorite = favoriteProducts.some((item) => item.id === product.id);
-  const isComparing = compareProducts.some((item) => item.id === product.id);
+  const isFavorite: boolean = favoriteProducts.some(
+    (item: IProductResponse) => item.id === product.id
+  );
+  const isComparing: boolean = compareProducts.some(
+    (item: IProductResponse) => item.id === product.id
+  );
 
   return (
     <NavLink to={`/products/${product?.category}/${product?.id}`}>
