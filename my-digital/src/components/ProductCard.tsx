@@ -27,7 +27,7 @@ import {
 
 interface IProductCard {
   product: IProductResponse;
-  grid?: number | null;
+  grid?: number;
 }
 
 const ActionBar = styled.div`

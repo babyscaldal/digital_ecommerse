@@ -1,41 +1,41 @@
-import { useState } from "react"
-import { Container, Row, Col } from "react-bootstrap"
-import styled from "styled-components"
+import { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import styled from "styled-components";
 
-import ToggleGrid from "../components/ToggleGrid"
-import FilterMenuContainer from "../components/FilterMenuContainer"
-import { useAppSelector } from "../app/hooks"
+import ToggleGrid from "../components/ToggleGrid";
+import FilterMenuContainer from "../components/FilterMenuContainer";
+import { useAppSelector } from "../app/hooks";
 import {
   filterProductsListState,
   isLoadingState,
-} from "../app/Redux/products/productSlice"
-import SkeletonItemCard from "../components/ItemSkeleton"
-import ProductCard from "../components/ProductCard"
+} from "../app/Redux/products/productSlice";
+import SkeletonItemCard from "../components/ItemSkeleton";
+import ProductCard from "../components/ProductCard";
 
 const Wrapper = styled.section`
   padding-top: 160px;
   background-color: var(--color-f5f5f7);
-`
+`;
 const FilterSortGrid = styled.div`
   padding: 10px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px #0000001a;
-`
+`;
 
 const ResultText = styled.p`
   font-weight: 500;
   margin: 0;
-`
+`;
 
 export default function SearchProductsList() {
-  const filterProducts = useAppSelector(filterProductsListState)
-  const isLoading = useAppSelector(isLoadingState)
-  const [grid, setGrid] = useState<number>(3)
+  const filterProducts = useAppSelector(filterProductsListState);
+  const isLoading = useAppSelector(isLoadingState);
+  const [grid, setGrid] = useState<number>(3);
 
   const handleChange = (value: number) => {
-    setGrid(value)
-  }
+    setGrid(value);
+  };
 
   return (
     <Wrapper>
@@ -54,7 +54,7 @@ export default function SearchProductsList() {
                       results was found
                     </ResultText>
                     <div className="d-flex align-items-center gap-10">
-                      <ToggleGrid grid={grid} onChange={handleChange} />
+                      <ToggleGrid grid={grid} onGridChange={handleChange} />
                     </div>
                   </div>
                 </FilterSortGrid>
@@ -78,23 +78,11 @@ export default function SearchProductsList() {
                   )}
                 </FilterSortGrid>
               </Col>
-              <Col xs={12}>
-                {/* <FilterSortGrid>
-                  <div className="d-flex justify-content-center align-items-center">
-                    <Pagination
-                      page={currentPage}
-                      count={pageNumber}
-                      variant="outlined"
-                      shape="rounded"
-                      onChange={onPageChange}
-                    />
-                  </div>
-                </FilterSortGrid> */}
-              </Col>
+              <Col xs={12}></Col>
             </Row>
           </Col>
         </Row>
       </Container>
     </Wrapper>
-  )
+  );
 }

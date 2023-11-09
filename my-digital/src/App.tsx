@@ -70,7 +70,7 @@ function App() {
   const isLogin = useAppSelector(isLoginState);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [grid, setGrid] = useState<number | null>(null);
+  const [grid, setGrid] = useState<number | undefined>(undefined);
   // const itemPerPage = 6;
   const [itemPerPage, setItemPerPage] = useState(6);
 
