@@ -1,0 +1,99 @@
+:root {
+  --color-131921: #131921;
+  --color-3b4149: #3b4149;
+  --color-febd69: #febd69;
+  --color-232f3e: #232f3e;
+  --color-bf4800: #bf4800;
+  --color-f5f5f7: #f5f5f7;
+  --color-ededed: #ededed;
+  --color-777777: #777777;
+  --color-1c1c1b: #1c1c1b;
+  --font-family : 'Rubik', sans-serif;
+}
+
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width        : 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius   : 4px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius   : 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family   : var(--font-family);
+  line-height   : 1.5;
+  text-rendering: optimizespeed;
+  overflow-y    : overlay;
+}
+
+a {
+  text-decoration: none;
+  display        : inline-block;
+}
+
+
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-15 {
+  gap: 15px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px
+}
+
+.button {
+  background-color: var(--color-232f3e);
+  color           : white;
+  font-size       : 14px;
+  padding         : 13px 33px;
+  border          : none;
+  border-radius   : 15px;
+
+  &:hover {
+    background-color: var(--color-febd69);
+    color           : var(--color-131921)
+  }
+}
+
+// Cart
+.cart-col-1 {
+  width: 40%;
+}
+
+.cart-col-1 p {
+  color    : var(--color-777777);
+  font-size: 14px;
+}
+
+.cart-col-2 {
+  width: 10%;
+}
+
+.cart-col-3 {
+  width: 15%;
+}
+
+.cart-col-4 {
+  width: 15%;
+}
+
+//End Cart
+
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
