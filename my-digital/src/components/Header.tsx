@@ -1,42 +1,42 @@
-import { Col, Container, Dropdown, Row } from "react-bootstrap"
-import { NavLink, useNavigate } from "react-router-dom"
-import styled from "styled-components"
-import CompareIcon from "@mui/icons-material/Compare"
-import PersonIcon from "@mui/icons-material/Person"
-import FavoriteIcon from "@mui/icons-material/Favorite"
-import { Badge } from "@mui/material"
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined"
-import { useEffect, useState } from "react"
-import { AppBar } from "@mui/material"
+import { Col, Container, Dropdown, Row } from "react-bootstrap";
+import { NavLink, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import CompareIcon from "@mui/icons-material/Compare";
+import PersonIcon from "@mui/icons-material/Person";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Badge } from "@mui/material";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useEffect } from "react";
+import { AppBar } from "@mui/material";
 
-import images from "../Image/images"
-import { navOption } from "../data/data"
-import SearchBarForm from "./SearchBarForm"
-import UserLoggedInMenu from "./UserLoggedInMenu"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { categories } from "../app/Redux/Categories/CategorySlice"
+import images from "../Image/images";
+import { navOption } from "../data/data";
+import SearchBarForm from "./SearchBarForm";
+import UserLoggedInMenu from "./UserLoggedInMenu";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { categories } from "../app/Redux/Categories/CategorySlice";
 import {
   cartProductsState,
   compareProductsState,
   favoriteProductsState,
   getProducts,
   getProductsInCategory,
-} from "../app/Redux/products/productSlice"
-import { getCurrentUser, isLoginState } from "../app/Redux/users/userSlice"
-import ModalForm from "./Modal"
+} from "../app/Redux/products/productSlice";
+import { getCurrentUser, isLoginState } from "../app/Redux/users/userSlice";
+import ModalForm from "./Modal";
 
 const HeaderUpperContainer = styled.div`
   background: var(--color-131921);
   height: 75px;
-`
+`;
 
 const HeaderBottomContainer = styled.div`
   background-color: var(--color-232f3e);
   height: 75px;
-`
+`;
 
-const MenuBottom = styled.div``
-const MenuLink = styled.div``
+const MenuBottom = styled.div``;
+const MenuLink = styled.div``;
 
 const StyledNavLink = styled(NavLink)`
   color: white;
@@ -45,12 +45,12 @@ const StyledNavLink = styled(NavLink)`
   font-weight: 400;
   letter-spacing: 0.3;
   text-transform: uppercase;
-`
+`;
 const DropdownMenu = styled(Dropdown.Menu)`
   background-color: var(--color-131921);
   transform: translate3d(0px, 58px, 0px) !important;
   width: 100%;
-`
+`;
 const DropdownToggle = styled(Dropdown.Toggle)`
   color: white;
   font-size: 16px;
@@ -62,7 +62,7 @@ const DropdownToggle = styled(Dropdown.Toggle)`
   &:focus {
     box-shadow: none;
   }
-`
+`;
 
 const DropdownItem = styled(Dropdown.Item)`
   font-size: 14px;
@@ -83,30 +83,30 @@ const DropdownItem = styled(Dropdown.Item)`
   &:active {
     background-color: var(--color-febd69);
   }
-`
+`;
 
 const NavItemWrapper = styled.div`
   &:hover svg {
     transform: rotateY(360deg);
     transition: all 1s linear;
   }
-`
+`;
 
 export default function Header() {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const isLogin = useAppSelector(isLoginState)
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const isLogin = useAppSelector(isLoginState);
 
   useEffect(() => {
     if (isLogin) {
-      dispatch(getCurrentUser())
+      dispatch(getCurrentUser());
     }
-  }, [isLogin])
+  }, [isLogin]);
 
-  const categoriesList = useAppSelector(categories)
-  const favoriteProducts = useAppSelector(favoriteProductsState)
-  const compareProducts = useAppSelector(compareProductsState)
-  const cartProducts = useAppSelector(cartProductsState)
+  const categoriesList = useAppSelector(categories);
+  const favoriteProducts = useAppSelector(favoriteProductsState);
+  const compareProducts = useAppSelector(compareProductsState);
+  const cartProducts = useAppSelector(cartProductsState);
 
   return (
     <AppBar position="fixed" sx={{ boxShadow: "none" }}>
@@ -134,7 +134,7 @@ export default function Header() {
                         color: isActive
                           ? "var(--color-febd69)"
                           : "var(--color-ededed)",
-                      }
+                      };
                     }}
                     to="compare"
                     className="d-flex align-items-center gap-10"
@@ -160,7 +160,7 @@ export default function Header() {
                         color: isActive
                           ? "var(--color-febd69)"
                           : "var(--color-ededed)",
-                      }
+                      };
                     }}
                     to="favorite"
                     className="d-flex align-items-center gap-10"
@@ -188,7 +188,7 @@ export default function Header() {
                           color: isActive
                             ? "var(--color-febd69)"
                             : "var(--color-ededed)",
-                        }
+                        };
                       }}
                       to={"/cart"}
                       className="d-flex align-items-center gap-10"
@@ -217,7 +217,7 @@ export default function Header() {
                           color: isActive
                             ? "var(--color-febd69)"
                             : "var(--color-ededed)",
-                        }
+                        };
                       }}
                       to="login"
                       className="d-flex align-items-center gap-10"
@@ -253,8 +253,8 @@ export default function Header() {
                       <DropdownItem
                         key={category.id}
                         onClick={() => {
-                          dispatch(getProductsInCategory(category?.id))
-                          navigate(`products/${category?.category}`)
+                          dispatch(getProductsInCategory(category?.id));
+                          navigate(`products/${category?.category}`);
                         }}
                       >
                         {category?.category}
@@ -268,7 +268,7 @@ export default function Header() {
                       <StyledNavLink
                         onClick={() => {
                           if (link?.title === "Our Store") {
-                            dispatch(getProducts())
+                            dispatch(getProducts());
                           }
                         }}
                         key={index}
@@ -279,7 +279,7 @@ export default function Header() {
                             color: isActive
                               ? "var(--color-febd69)"
                               : "var(--color-ededed)",
-                          }
+                          };
                         }}
                       >
                         {link.title}
@@ -296,5 +296,5 @@ export default function Header() {
         </Container>
       </HeaderBottomContainer>
     </AppBar>
-  )
+  );
 }

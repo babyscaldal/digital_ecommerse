@@ -1,20 +1,15 @@
-import { Navigation } from "swiper/modules"
-import { Swiper } from "swiper/react"
+import { Navigation } from "swiper/modules";
+import { Swiper } from "swiper/react";
 
-import { useAppSelector } from "../app/hooks"
-import { popularProductsState } from "../app/Redux/products/productSlice"
-
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 
 interface IResponsiveSlides {
-  children: ReactNode
+  children: ReactNode;
 }
 export default function ResponsiveSlides({ children }: IResponsiveSlides) {
   return (
     <>
       <Swiper
-        // autoplay={{ delay: 3000 }}
-        // loop={true}
         slidesPerView={"auto"}
         navigation={{
           nextEl: ".slider-button-next",
@@ -44,5 +39,5 @@ export default function ResponsiveSlides({ children }: IResponsiveSlides) {
         {children}
       </Swiper>
     </>
-  )
+  );
 }

@@ -1,21 +1,21 @@
-import Paper from "@mui/material/Paper"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
-import TableCell from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableContainer"
-import TableHead from "@mui/material/TableHead"
-import TableRow from "@mui/material/TableRow"
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
-import { cartProductsState } from "../app/Redux/products/productSlice"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { selectedCartListState } from "../app/Redux/cart/CartSlice"
-import { CheckoutItem } from "./CheckoutItem"
+import { cartProductsState } from "../app/Redux/products/productSlice";
+import { useAppSelector } from "../app/hooks";
+import { selectedCartListState } from "../app/Redux/cart/CartSlice";
+import { CheckoutItem } from "./CheckoutItem";
 
 export default function CheckoutTable() {
-  const selectedCartList = useAppSelector(selectedCartListState)
-  console.log(selectedCartList)
+  const selectedCartList = useAppSelector(selectedCartListState);
+  console.log(selectedCartList);
 
-  const cartProducts = useAppSelector(cartProductsState)
+  const cartProducts = useAppSelector(cartProductsState);
 
   return (
     <Paper
@@ -55,11 +55,11 @@ export default function CheckoutTable() {
           </TableHead>
           <TableBody>
             {cartProducts?.map((item) => {
-              return <CheckoutItem item={item} key={item?.id} />
+              return <CheckoutItem item={item} key={item?.id} />;
             })}
           </TableBody>
         </Table>
       </TableContainer>
     </Paper>
-  )
+  );
 }

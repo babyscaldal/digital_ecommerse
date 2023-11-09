@@ -1,26 +1,22 @@
-import { TableRow, TableCell } from "@mui/material"
-import { useNavigate } from "react-router-dom"
-import { IProductResponse } from "../app/Redux/products/productType"
-import {
-  addTotalPriceToCartProducts,
-  removeProductsFromCartList,
-} from "../app/Redux/products/productSlice"
-import { useAppDispatch } from "../app/hooks"
-import DeleteConfirmModal from "./DeleteConfirmModal"
-import { useEffect, useState } from "react"
+import { TableRow, TableCell } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { IProductResponse } from "../app/Redux/products/productType";
+import { addTotalPriceToCartProducts } from "../app/Redux/products/productSlice";
+import { useAppDispatch } from "../app/hooks";
+import { useEffect, useState } from "react";
 
 interface ICartItem {
-  item: IProductResponse
+  item: IProductResponse;
 }
 
 export const CheckoutItem = ({ item }: ICartItem) => {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const [updatedProduct] = useState(item)
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [updatedProduct] = useState(item);
 
   useEffect(() => {
-    dispatch(addTotalPriceToCartProducts(updatedProduct))
-  }, [updatedProduct])
+    dispatch(addTotalPriceToCartProducts(updatedProduct));
+  }, [updatedProduct]);
 
   return (
     <TableRow
@@ -42,5 +38,5 @@ export const CheckoutItem = ({ item }: ICartItem) => {
         <h6>${item?.totalPrice}</h6>
       </TableCell>
     </TableRow>
-  )
-}
+  );
+};

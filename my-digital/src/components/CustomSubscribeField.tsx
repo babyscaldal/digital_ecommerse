@@ -1,30 +1,30 @@
-import * as React from "react"
-import Snackbar from "@mui/material/Snackbar"
-import Fade from "@mui/material/Fade"
-import Slide, { SlideProps } from "@mui/material/Slide"
-import { TransitionProps } from "@mui/material/transitions"
-import { Alert } from "@mui/material"
+import * as React from "react";
+import Snackbar from "@mui/material/Snackbar";
+import Fade from "@mui/material/Fade";
+import Slide, { SlideProps } from "@mui/material/Slide";
+import { TransitionProps } from "@mui/material/transitions";
+import { Alert } from "@mui/material";
 
 import {
   OutlinedInput,
   InputAdornment,
   IconButton,
   FormControl,
-} from "@mui/material"
-import { useState } from "react"
-import { Controller, useFormContext } from "react-hook-form"
-import styled from "styled-components"
+} from "@mui/material";
+import { useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
 interface ICustomSubscribeField {
-  id: string
-  placeholder?: string
-  children?: any
-  type?: string
-  name: string
+  id: string;
+  placeholder?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  type?: string;
+  name: string;
 }
 
 function SlideTransition(props: SlideProps) {
-  return <Slide {...props} direction="up" />
+  return <Slide {...props} direction="up" />;
 }
 
 export default function CustomSubscribeField({
@@ -35,42 +35,44 @@ export default function CustomSubscribeField({
   type = "text",
 }: ICustomSubscribeField) {
   const [state, setState] = React.useState<{
-    open: boolean
+    open: boolean;
     Transition: React.ComponentType<
       TransitionProps & {
-        children: React.ReactElement<any, any>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        children: React.ReactElement<any, any>;
       }
-    >
+    >;
   }>({
     open: false,
     Transition: Fade,
-  })
+  });
 
   const handleClick =
     (
       Transition: React.ComponentType<
         TransitionProps & {
-          children: React.ReactElement<any, any>
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          children: React.ReactElement<any, any>;
         }
-      >,
+      >
     ) =>
     () => {
       setState({
         open: true,
         Transition,
-      })
-    }
+      });
+    };
 
   const handleClose = () => {
     setState({
       ...state,
       open: false,
-    })
-  }
+    });
+  };
 
-  const { control } = useFormContext()
+  const { control } = useFormContext();
 
-  const [iconColor, setColor] = useState("")
+  const [iconColor, setColor] = useState("");
 
   return (
     <Controller
@@ -94,8 +96,8 @@ export default function CustomSubscribeField({
               error={!!error}
               placeholder={placeholder}
               onBlur={() => {
-                setColor("")
-                onBlur()
+                setColor("");
+                onBlur();
               }}
               onChange={onChange}
               onFocus={() => setColor("warning.main")}
@@ -139,8 +141,8 @@ export default function CustomSubscribeField({
               </Snackbar>
             )}
           </FormControl>
-        )
+        );
       }}
     />
-  )
+  );
 }

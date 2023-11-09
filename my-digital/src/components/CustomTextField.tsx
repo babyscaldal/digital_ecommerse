@@ -1,19 +1,13 @@
-import {
-  Alert,
-  InputLabel,
-  OutlinedInput,
-  FormControl,
-  TextField,
-} from "@mui/material"
-import { Controller, useFormContext } from "react-hook-form"
-import "tippy.js/dist/tippy.css"
+import { FormControl, TextField } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
+import "tippy.js/dist/tippy.css";
 
 interface ICustomTextField {
-  id: string
-  name: string
-  type: string
-  label?: string
-  placeholder?: string
+  id: string;
+  name: string;
+  type: string;
+  label?: string;
+  placeholder?: string;
 }
 
 export default function CustomTextField({
@@ -23,7 +17,7 @@ export default function CustomTextField({
   placeholder,
   label,
 }: ICustomTextField) {
-  const { control } = useFormContext()
+  const { control } = useFormContext();
 
   return (
     <Controller
@@ -59,8 +53,8 @@ export default function CustomTextField({
               />
             </FormControl>
           </>
-        )
+        );
       }}
     />
-  )
+  );
 }

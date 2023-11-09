@@ -1,28 +1,27 @@
-import styled from "styled-components"
-import { SwiperSlide } from "swiper/react"
-import { Col, Container, Row } from "react-bootstrap"
-import NavigateNextIcon from "@mui/icons-material/NavigateNext"
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore"
-import ResponsiveSlides from "./ResponsiveSlides"
-import { IconButton } from "@mui/material"
+import styled from "styled-components";
+import { SwiperSlide } from "swiper/react";
+import { Col, Container, Row } from "react-bootstrap";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import ResponsiveSlides from "./ResponsiveSlides";
+import { IconButton } from "@mui/material";
 
-import PopularCard from "./PopularCard"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { popularProductsState } from "../app/Redux/products/productSlice"
-import { categories } from "../app/Redux/Categories/CategorySlice"
+import PopularCard from "./PopularCard";
+import { popularProductsState } from "../app/Redux/products/productSlice";
+import { useAppSelector } from "../app/hooks";
 
 const PopularWrapper = styled.section`
   background-color: var(--color-f5f5f7);
-`
+`;
 
 const Heading = styled.h3`
   font-size: 26px;
   line-height: 32px;
   font-weight: 500;
-`
+`;
 
 export default function PopularList() {
-  const popularProducts = useAppSelector(popularProductsState)
+  const popularProducts = useAppSelector(popularProductsState);
 
   return (
     <PopularWrapper className="py-5">
@@ -58,5 +57,5 @@ export default function PopularList() {
         </Row>
       </Container>
     </PopularWrapper>
-  )
+  );
 }

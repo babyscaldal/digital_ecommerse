@@ -1,29 +1,25 @@
-import { Card, Col, Container, Row } from "react-bootstrap"
-import Rating from "@mui/material/Rating"
-import styled, { keyframes } from "styled-components"
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
-import Favorite from "@mui/icons-material/Favorite"
-import { Checkbox, IconButton } from "@mui/material"
-import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined"
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined"
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined"
-import { NavLink } from "react-router-dom"
-import { IProductResponse } from "../app/Redux/products/productType"
-import { useAppSelector } from "../app/hooks"
-import { isLoadingState } from "../app/Redux/products/productSlice"
-import SkeletonItem from "./ItemSkeleton"
-import SkeletonItemCard from "./ItemSkeleton"
+import { Card, Col, Container, Row } from "react-bootstrap";
+import Rating from "@mui/material/Rating";
+import styled, { keyframes } from "styled-components";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import { Checkbox, IconButton } from "@mui/material";
+import CompareArrowsOutlinedIcon from "@mui/icons-material/CompareArrowsOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { NavLink } from "react-router-dom";
+import { IProductResponse } from "../app/Redux/products/productType";
 
 interface IProductCard {
-  product: IProductResponse
-  grid?: number
+  product: IProductResponse;
+  grid?: number;
 }
 
 const ActionBar = styled.div`
   top: 5px;
   right: -30px;
   transition: all 0.3s;
-`
+`;
 const slideIn = keyframes`
   from {
     transform: translateX(100%);
@@ -31,7 +27,7 @@ const slideIn = keyframes`
   to {
     transform: translateX(0);
   }
-`
+`;
 
 const ProductItem = styled(Card)`
   width: 100%;
@@ -53,13 +49,13 @@ const ProductItem = styled(Card)`
     transition: all 0.25s ease;
     transform: scale(1.2);
   }
-`
+`;
 
 const Category = styled(Card.Text)`
   margin-bottom: 8px;
   font-size: 14px;
   color: var(--color-bf4800);
-`
+`;
 
 const Title = styled(Card.Title)`
   display: -webkit-box;
@@ -70,13 +66,13 @@ const Title = styled(Card.Title)`
   color: var(--color-131921);
   text-overflow: ellipsis;
   overflow: hidden;
-`
+`;
 const Price = styled(Card.Text)`
   font-weight: bold;
   font-size: 16px;
   color: var(--color-1c1b1b);
   margin-top: 8px;
-`
+`;
 
 const Detail = styled(Card.Text)`
   color: var(--color-777777);
@@ -87,14 +83,14 @@ const Detail = styled(Card.Text)`
   line-height: 22px;
   text-overflow: ellipsis;
   overflow: hidden;
-`
+`;
 
 const WishListIcon = styled.div`
   top: 5px;
   left: 5px;
-`
+`;
 
-export default function PopularCard({ product, grid }: IProductCard) {
+export default function PopularCard({ product }: IProductCard) {
   return (
     <NavLink to={`/products/${product?.category}/${product?.id}`}>
       <ProductItem className="position-relative">
@@ -157,5 +153,5 @@ export default function PopularCard({ product, grid }: IProductCard) {
         </ActionBar>
       </ProductItem>
     </NavLink>
-  )
+  );
 }

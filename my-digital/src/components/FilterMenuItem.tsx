@@ -1,29 +1,29 @@
-import { ReactNode, useState } from "react"
-import Offcanvas from "react-bootstrap/Offcanvas"
-import IconButton from "@mui/material/IconButton"
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import { Button } from "react-bootstrap"
-import styled from "styled-components"
-import { useFormContext } from "react-hook-form"
-import { IFilterOptions } from "./FilterMenuContainer"
+import { useState } from "react";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import IconButton from "@mui/material/IconButton";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Button } from "react-bootstrap";
+import styled from "styled-components";
+import { useFormContext } from "react-hook-form";
+import { IFilterOptions } from "./FilterMenuContainer";
 
 const CanvasFooter = styled.div`
   padding: 13px 25px;
-`
+`;
 
 interface IFilterMenuItem {
-  category?: string
-  option?: IFilterOptions
+  category?: string;
+  option?: IFilterOptions;
 }
 
 function FilterMenuItem({ category, option }: IFilterMenuItem) {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
-  const handleCloseChild = () => setShow(false)
-  const handleShowChild = () => setShow(true)
+  const handleCloseChild = () => setShow(false);
+  const handleShowChild = () => setShow(true);
 
-  const { reset } = useFormContext()
+  const { reset } = useFormContext();
   return (
     <>
       <IconButton onClick={handleShowChild}>
@@ -51,7 +51,7 @@ function FilterMenuItem({ category, option }: IFilterMenuItem) {
         <CanvasFooter className="d-flex align-items-center justify-content-center gap-4">
           <Button
             onClick={() => {
-              reset()
+              reset();
             }}
             variant="danger"
             style={{ width: "130px" }}
@@ -70,7 +70,7 @@ function FilterMenuItem({ category, option }: IFilterMenuItem) {
         </CanvasFooter>
       </Offcanvas>
     </>
-  )
+  );
 }
 
-export default FilterMenuItem
+export default FilterMenuItem;

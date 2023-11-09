@@ -1,41 +1,38 @@
-import { useForm, FormProvider } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Col, Container, Row } from "react-bootstrap"
-import CustomTextField from "./CustomTextField"
-import CustomSelectField from "./CustomSelectField"
-import { Button, MenuItem } from "@mui/material"
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { useForm, FormProvider } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Col, Container, Row } from "react-bootstrap";
+import CustomTextField from "./CustomTextField";
+import CustomSelectField from "./CustomSelectField";
+import { Button, MenuItem } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   allCountriesState,
   citiesState,
   getAllCountries,
-} from "../app/Redux/countries/countrySlice"
+} from "../app/Redux/countries/countrySlice";
 
-import { cartProductsState } from "../app/Redux/products/productSlice"
-import PayPalCheckoutButton from "./PayPalCheckoutButton"
-
-export const checkoutFormValueSchema = z.object({
+const checkoutFormValueSchema = z.object({
   firstName: z.string().min(1, { message: "First Name is required" }),
   lastName: z.string().min(1, { message: "Last Name is required" }),
   address: z.string().min(1, { message: "Address is required" }),
-})
+});
 
 interface ICheckoutFormValue {
-  country: string
-  firstName: string
-  lastName: string
-  address: string
-  city: string
+  country: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
 }
 
 export default function CheckoutForm() {
-  const dispatch = useAppDispatch()
-  const allCountries = useAppSelector(allCountriesState)
-  const cities = useAppSelector(citiesState)
+  const dispatch = useAppDispatch();
+  const allCountries = useAppSelector(allCountriesState);
+  const cities = useAppSelector(citiesState);
 
   const form = useForm<ICheckoutFormValue>({
     defaultValues: {
@@ -47,18 +44,18 @@ export default function CheckoutForm() {
     },
     resolver: zodResolver(checkoutFormValueSchema),
     mode: "onSubmit",
-  })
+  });
 
-  const { handleSubmit, reset } = form
+  const { handleSubmit, reset } = form;
 
   const onSubmit = (data: ICheckoutFormValue) => {
-    console.log(data)
-    reset()
-  }
+    console.log(data);
+    reset();
+  };
 
   useEffect(() => {
-    dispatch(getAllCountries())
-  }, [])
+    dispatch(getAllCountries());
+  }, []);
 
   return (
     <FormProvider {...form}>
@@ -93,7 +90,7 @@ export default function CheckoutForm() {
                     <MenuItem key={item?.country} value={item?.country}>
                       {item?.country}
                     </MenuItem>
-                  )
+                  );
                 })}
               </CustomSelectField>
             </Col>
@@ -107,7 +104,7 @@ export default function CheckoutForm() {
                     <MenuItem key={index} value={item}>
                       {item}
                     </MenuItem>
-                  )
+                  );
                 })}
               </CustomSelectField>
             </Col>
@@ -143,5 +140,5 @@ export default function CheckoutForm() {
         </Container>
       </form>
     </FormProvider>
-  )
+  );
 }

@@ -1,21 +1,15 @@
-import { FormControl, Select } from "@mui/material"
-import { useEffect } from "react"
-import { Controller, useFormContext } from "react-hook-form"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import {
-  allCountriesState,
-  citiesState,
-  getCities,
-} from "../app/Redux/countries/countrySlice"
+import { FormControl, Select } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
 interface ICustomSelectField {
-  fullWidth?: boolean
-  label?: string
-  children?: any
-  name: string
-  width?: string
-  onSelectValueChange?: (value: number) => void
-  onCountryChange?: (data: string[]) => void
+  fullWidth?: boolean;
+  label?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  name: string;
+  width?: string;
+  onSelectValueChange?: (value: number) => void;
+  onCountryChange?: (data: string[]) => void;
 }
 
 export default function CustomSelectField({
@@ -24,28 +18,14 @@ export default function CustomSelectField({
   name,
   children,
   label,
-  onSelectValueChange,
 }: ICustomSelectField) {
-  const { control } = useFormContext()
-
-  const dispatch = useAppDispatch()
-  const countries = useAppSelector(allCountriesState)
-  const cities = useAppSelector(citiesState)
+  const { control } = useFormContext();
 
   return (
     <Controller
       name={name}
       control={control}
       render={({ field: { value, onChange, onBlur } }) => {
-        useEffect(() => {
-          onSelectValueChange && onSelectValueChange(value)
-          const selectedCountry = countries.find(
-            (item) => item.country === value,
-          )
-          if (selectedCountry) {
-            dispatch(getCities(selectedCountry?.cities))
-          }
-        }, [value])
         return (
           <FormControl fullWidth={fullWidth} size="small">
             <Select
@@ -58,8 +38,8 @@ export default function CustomSelectField({
               {children}
             </Select>
           </FormControl>
-        )
+        );
       }}
     />
-  )
+  );
 }

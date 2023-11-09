@@ -50,7 +50,6 @@ import TermAndCondition from "./pages/TermAndCondition";
 import Home from "./pages/Home";
 import Compare from "./pages/Compare";
 import { getAllBlogs } from "./app/Redux/blogs/blogSlice";
-import Test from "./pages/Test";
 import SearchProductsList from "./pages/SearchProductsList";
 import { isLoginState } from "./app/Redux/users/userSlice";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
@@ -78,7 +77,7 @@ function App() {
   const displayedProducts = filterProducts?.slice(startItem, endItem);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handlePageChange = (event: any, page: number) => {
+  const handlePageChange = (_: any, page: number) => {
     setCurrentPage(page);
   };
 
@@ -223,7 +222,6 @@ function App() {
             path: "search",
             element: <SearchProductsList />,
           },
-          { path: "test", element: <Test /> },
           {
             path: "my-profile",
             element: <MyProfile />,

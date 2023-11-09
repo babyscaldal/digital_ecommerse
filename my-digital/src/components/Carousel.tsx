@@ -1,9 +1,9 @@
-import { useState } from "react"
-import Carousel from "react-bootstrap/Carousel"
-import images from "../Image/images"
-import styled from "styled-components"
-import { Link, useNavigate } from "react-router-dom"
-import { Button } from "react-bootstrap"
+import { useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import images from "../Image/images";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const MainBannerContent = styled.div`
   top: 15%;
@@ -33,15 +33,15 @@ const MainBannerContent = styled.div`
     letter-spacing: 0.4px;
     color: var(--color-131921);
   }
-`
+`;
 
 function HeroCarousel() {
-  const navigate = useNavigate()
-  const [index, setIndex] = useState(0)
+  const navigate = useNavigate();
+  const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex: number) => {
-    setIndex(selectedIndex)
-  }
+    setIndex(selectedIndex);
+  };
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -57,7 +57,7 @@ function HeroCarousel() {
           <p>From &799.00</p>
           <Button
             onClick={() => {
-              navigate("/products/iPad/11")
+              navigate("/products/iPad/11");
             }}
             variant="secondary"
             className="button"
@@ -80,7 +80,7 @@ function HeroCarousel() {
           {/* <Link to=""> */}
           <Button
             onClick={() => {
-              navigate("/products/iPhone/7")
+              navigate("/products/iPhone/7");
             }}
             variant="secondary"
             className="button"
@@ -91,7 +91,7 @@ function HeroCarousel() {
         </MainBannerContent>
       </Carousel.Item>
     </Carousel>
-  )
+  );
 }
 
-export default HeroCarousel
+export default HeroCarousel;

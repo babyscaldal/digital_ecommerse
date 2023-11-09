@@ -1,35 +1,33 @@
-import * as React from "react"
-import Paper from "@mui/material/Paper"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
-import TableCell from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableContainer"
-import TableHead from "@mui/material/TableHead"
-import TablePagination from "@mui/material/TablePagination"
-import TableRow from "@mui/material/TableRow"
-import { CartItem } from "./CartItem"
-import AllCartSelected from "./AllCartSelected"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { selectedCartListState } from "../app/Redux/cart/CartSlice"
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { CartItem } from "./CartItem";
+import AllCartSelected from "./AllCartSelected";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectedCartListState } from "../app/Redux/cart/CartSlice";
 
 import {
   cartProductsState,
   removeAllSelectedProductsFromCartList,
-} from "../app/Redux/products/productSlice"
-import { IProductResponse } from "../app/Redux/products/productType"
-import DeleteConfirmModal from "./DeleteConfirmModal"
-import { Tooltip } from "@mui/material"
+} from "../app/Redux/products/productSlice";
+import { IProductResponse } from "../app/Redux/products/productType";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 
 export default function CartTable() {
-  const selectedCartList = useAppSelector(selectedCartListState)
-  console.log(selectedCartList)
+  const selectedCartList = useAppSelector(selectedCartListState);
+  console.log(selectedCartList);
 
   const handleClickToDeleteAllSelected = (products: IProductResponse[]) => {
-    dispatch(removeAllSelectedProductsFromCartList(products))
-  }
+    dispatch(removeAllSelectedProductsFromCartList(products));
+  };
 
-  const cartProducts = useAppSelector(cartProductsState)
-  const dispatch = useAppDispatch()
+  const cartProducts = useAppSelector(cartProductsState);
+  const dispatch = useAppDispatch();
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -85,11 +83,11 @@ export default function CartTable() {
           </TableHead>
           <TableBody>
             {cartProducts?.map((item) => {
-              return <CartItem item={item} key={item?.id} />
+              return <CartItem item={item} key={item?.id} />;
             })}
           </TableBody>
         </Table>
       </TableContainer>
     </Paper>
-  )
+  );
 }

@@ -1,48 +1,45 @@
-import { useForm, FormProvider } from "react-hook-form"
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, IconButton } from "@mui/material"
-import PasswordField from "./PasswordField"
-import { useNavigate } from "react-router-dom"
-import CustomTextField from "./CustomTextField"
-import { useState } from "react"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { useForm, FormProvider } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@mui/material";
+import PasswordField from "./PasswordField";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   currentUserState,
   updateCurrentUser,
-} from "../app/Redux/users/userSlice"
-import EditIcon from "@mui/icons-material/Edit"
+} from "../app/Redux/users/userSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import { useState } from "react";
 
 const MyProfileSchema = z.object({
   password: z
     .string()
     .min(8, { message: "The password must be least 8 characters long." }),
-})
+});
 
 export interface IMyProfileFormValue {
-  password: string
+  password: string;
 }
 
 export default function MyProfileForm() {
-  const [isUpdate, setIsUpdate] = useState(false)
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const [isUpdate, setIsUpdate] = useState(false);
+  const dispatch = useAppDispatch();
   const form = useForm({
     defaultValues: { password: "" },
     resolver: zodResolver(MyProfileSchema),
     mode: "onSubmit",
-  })
+  });
 
-  const { handleSubmit, reset } = form
+  const { handleSubmit, reset } = form;
 
   const onSubmit = (data: IMyProfileFormValue) => {
-    console.log(data)
-    dispatch(updateCurrentUser(data))
-    setIsUpdate(false)
-    reset()
-  }
+    console.log(data);
+    dispatch(updateCurrentUser(data));
+    setIsUpdate(false);
+    reset();
+  };
 
-  const currentUser = useAppSelector(currentUserState)
+  const currentUser = useAppSelector(currentUserState);
 
   return (
     <>
@@ -110,5 +107,5 @@ export default function MyProfileForm() {
         </>
       )}
     </>
-  )
+  );
 }

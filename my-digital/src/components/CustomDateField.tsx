@@ -1,27 +1,21 @@
-import { Controller, useFormContext } from "react-hook-form"
-import { DateField } from "@mui/x-date-pickers/DateField"
-import FormControl from "@mui/material/FormControl"
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
-import dayjs from "dayjs"
-import { FormHelperText, TextField } from "@mui/material"
+import { Controller, useFormContext } from "react-hook-form";
+import { DateField } from "@mui/x-date-pickers/DateField";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { FormHelperText } from "@mui/material";
 
 interface ICustomDateField {
-  name: string
+  name: string;
 }
 
 export default function CustomDateField({ name }: ICustomDateField) {
-  const { control } = useFormContext()
-  // const today = dayjs(new Date())
+  const { control } = useFormContext();
 
   return (
     <Controller
       name={name}
       control={control}
-      render={({
-        field: { value, onChange, onBlur },
-        fieldState: { error },
-      }) => {
+      render={({ field: { value, onChange }, fieldState: { error } }) => {
         return (
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <>
@@ -41,8 +35,8 @@ export default function CustomDateField({ name }: ICustomDateField) {
               )}
             </>
           </LocalizationProvider>
-        )
+        );
       }}
     />
-  )
+  );
 }

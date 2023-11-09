@@ -1,13 +1,12 @@
-import { Button } from "@mui/material"
-import { useNavigate } from "react-router-dom"
-import styled from "styled-components"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   cartProductsState,
-  totalCartProductPriceState,
   totalPriceCalculate,
-} from "../app/Redux/products/productSlice"
-import { useEffect } from "react"
+} from "../app/Redux/products/productSlice";
+import { useEffect } from "react";
 
 const Wrapper = styled.section`
   background-color: white;
@@ -15,28 +14,28 @@ const Wrapper = styled.section`
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px #0000001a;
-`
+`;
 const Price = styled.h5`
   font-size: 20px;
-`
+`;
 const Title = styled.div`
   height: 57px;
   border-bottom: 1px solid var(--color-777777);
-`
+`;
 
 export default function CartPayment() {
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const cartProducts = useAppSelector(cartProductsState)
+  const cartProducts = useAppSelector(cartProductsState);
 
   const totalPrice = cartProducts.reduce((acc, item) => {
-    return acc + (item.totalPrice ?? 0)
-  }, 0)
+    return acc + (item.totalPrice ?? 0);
+  }, 0);
 
   useEffect(() => {
-    dispatch(totalPriceCalculate(totalPrice))
-  }, [totalPrice])
+    dispatch(totalPriceCalculate(totalPrice));
+  }, [totalPrice]);
 
   return (
     <Wrapper className="home-wrapper-2">
@@ -52,11 +51,11 @@ export default function CartPayment() {
         variant="contained"
         color="warning"
         onClick={() => {
-          navigate("/checkout")
+          navigate("/checkout");
         }}
       >
         Continue to checkout
       </Button>
     </Wrapper>
-  )
+  );
 }

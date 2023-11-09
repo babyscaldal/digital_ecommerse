@@ -1,11 +1,11 @@
-import styled from "styled-components"
-import { Link, useNavigate } from "react-router-dom"
-import { Col } from "react-bootstrap"
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import { Col } from "react-bootstrap";
 
-import { removeProductsFromCompareList } from "../app/Redux/products/productSlice"
-import { useAppDispatch } from "../app/hooks"
-import { IProductResponse } from "../app/Redux/products/productType"
-import images from "../Image/images"
+import { removeProductsFromCompareList } from "../app/Redux/products/productSlice";
+import { useAppDispatch } from "../app/hooks";
+import { IProductResponse } from "../app/Redux/products/productType";
+import images from "../Image/images";
 
 const CompareProductCard = styled.section`
   padding: 20px 15px;
@@ -21,7 +21,7 @@ const CompareProductCard = styled.section`
   &:hover img {
     opacity: 1;
   }
-`
+`;
 
 const CompareTitle = styled.h3`
   font-size: 20px;
@@ -35,9 +35,9 @@ const CompareTitle = styled.h3`
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: center;
-`
+`;
 
-const CompareProductDetail = styled.div``
+const CompareProductDetail = styled.div``;
 
 const ProductDetail = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ const ProductDetail = styled.div`
   p {
     margin: 0;
   }
-`
+`;
 
 export const Cross = styled.img`
   top: 15px;
@@ -57,15 +57,14 @@ export const Cross = styled.img`
   width: 25px;
   padding: 3px;
   cursor: pointer;
-`
+`;
 
 interface ICompareItem {
-  product: IProductResponse
+  product: IProductResponse;
 }
 
 export default function CompareItem({ product }: ICompareItem) {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
+  const dispatch = useAppDispatch();
   return (
     <Col xs={3}>
       <Link
@@ -78,8 +77,8 @@ export default function CompareItem({ product }: ICompareItem) {
             alt="cross"
             className="position-absolute cross img-fluid"
             onClick={(e) => {
-              e.preventDefault()
-              dispatch(removeProductsFromCompareList(product))
+              e.preventDefault();
+              dispatch(removeProductsFromCompareList(product));
             }}
           />
           <img
@@ -110,5 +109,5 @@ export default function CompareItem({ product }: ICompareItem) {
         </CompareProductCard>
       </Link>
     </Col>
-  )
+  );
 }

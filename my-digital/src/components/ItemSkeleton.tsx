@@ -1,20 +1,12 @@
-import Skeleton from "@mui/material/Skeleton"
-import { Stack } from "@mui/material"
-import styled from "styled-components"
+import Skeleton from "@mui/material/Skeleton";
+import { Stack } from "@mui/material";
+import styled from "styled-components";
 
 const SkeletonWrapperCard = styled.div`
   width: 100%;
   height: 358px;
   border-radius: 10px;
-`
-const SkeletonWrapperList = styled.div`
-  width: 100%;
-  height: 205px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
+`;
 
 export default function SkeletonItemCard() {
   return (
@@ -30,5 +22,5 @@ export default function SkeletonItemCard() {
         </Stack>
       </SkeletonWrapperCard>
     </>
-  )
+  );
 }

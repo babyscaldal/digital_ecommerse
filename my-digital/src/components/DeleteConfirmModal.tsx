@@ -1,50 +1,49 @@
-import { useEffect, useState } from "react"
-import Button from "react-bootstrap/Button"
-import Modal from "react-bootstrap/Modal"
-import DeleteIcon from "@mui/icons-material/Delete"
-import IconButton from "@mui/material/IconButton"
+import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
-import { IProductResponse } from "../app/Redux/products/productType"
-import { useAppSelector } from "../app/hooks"
-import { selectedCartListState } from "../app/Redux/cart/CartSlice"
-import { Tooltip } from "@mui/material"
+import { IProductResponse } from "../app/Redux/products/productType";
+import { useAppSelector } from "../app/hooks";
+import { selectedCartListState } from "../app/Redux/cart/CartSlice";
+import { Tooltip } from "@mui/material";
 
 interface IDeleteConfirmModal {
-  item?: IProductResponse
-  onDeleteSingle?: () => void
-  onDeleteAllSelected?: (products: IProductResponse[]) => void
-  title: string
-  count?: number
-  setCount?: React.Dispatch<React.SetStateAction<number>>
+  item?: IProductResponse;
+  onDeleteSingle?: () => void;
+  onDeleteAllSelected?: (products: IProductResponse[]) => void;
+  title: string;
+  count?: number;
+  setCount?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function DeleteConfirmModal({
-  item,
   setCount,
   count,
   title,
   onDeleteSingle,
   onDeleteAllSelected,
 }: IDeleteConfirmModal) {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   const handleClose = () => {
     if (count === 0) {
-      setCount && setCount(1)
-      setShow(false)
+      setCount && setCount(1);
+      setShow(false);
     } else {
-      setShow(false)
+      setShow(false);
     }
-  }
-  const handleShow = () => setShow(true)
+  };
+  const handleShow = () => setShow(true);
 
-  const selectedCartList = useAppSelector(selectedCartListState)
+  const selectedCartList = useAppSelector(selectedCartListState);
 
   useEffect(() => {
     if (count === 0) {
-      setShow(true)
+      setShow(true);
     }
-  }, [count])
+  }, [count]);
 
   return (
     <>
@@ -54,7 +53,7 @@ function DeleteConfirmModal({
           aria-label="delete"
           size="small"
           onClick={() => {
-            handleShow()
+            handleShow();
           }}
         >
           <DeleteIcon fontSize="small" />
@@ -75,9 +74,9 @@ function DeleteConfirmModal({
           <Button
             variant="success"
             onClick={() => {
-              onDeleteSingle && onDeleteSingle()
-              onDeleteAllSelected && onDeleteAllSelected(selectedCartList)
-              handleClose()
+              onDeleteSingle && onDeleteSingle();
+              onDeleteAllSelected && onDeleteAllSelected(selectedCartList);
+              handleClose();
             }}
           >
             Delete Now
@@ -85,7 +84,7 @@ function DeleteConfirmModal({
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 
-export default DeleteConfirmModal
+export default DeleteConfirmModal;
