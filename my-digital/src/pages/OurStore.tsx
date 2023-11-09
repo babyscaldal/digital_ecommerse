@@ -1,5 +1,4 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { Chip, Pagination } from "@mui/material";
@@ -18,6 +17,7 @@ import { categories } from "../app/Redux/Categories/CategorySlice";
 import toCapitalize from "../utils/toCapitalize";
 import RandomProducts from "../components/RandomProducts";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const FilterCard = styled.div`
   background-color: white;
   border-radius: 10px;
@@ -44,6 +44,7 @@ export const FilterCard = styled.div`
   }
 `;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const FilterTitle = styled.div`
   font-size: 16px;
   line-height: 20px;
@@ -52,6 +53,7 @@ export const FilterTitle = styled.div`
   margin-bottom: 10px;
 `;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CategoryList = styled.div`
   list-style-type: none;
   a {
@@ -61,6 +63,7 @@ export const CategoryList = styled.div`
   }
 `;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const SubTitle = styled.div`
   font-size: 14px;
   font-weight: 600;
@@ -92,17 +95,23 @@ const StyledGridItem = styled.div``;
 
 interface IOutStore {
   currentPage: number;
+  itemPerPage: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onPageChange: (event: any, page: number) => void;
   onCategoryChange: () => void;
+  onGridChange?: (value: number) => void;
+  grid?: number;
 }
 
 export default function OurStore({
+  itemPerPage,
+  grid,
+  onGridChange,
   currentPage,
   onPageChange,
   onCategoryChange,
 }: IOutStore) {
   useTitle("Our Store");
-  const [grid, setGrid] = useState<number>(3);
   const filterProducts = useAppSelector(filterProductsListState);
 
   const dispatch = useAppDispatch();
@@ -110,11 +119,7 @@ export default function OurStore({
 
   const allCategories = useAppSelector(categories);
 
-  const handleChange = (value: number) => {
-    setGrid(value);
-  };
-
-  const pageNumber = Math.ceil(filterProducts?.length / 6);
+  const pageNumber = Math.ceil(filterProducts?.length / itemPerPage);
 
   return (
     <>
@@ -208,7 +213,7 @@ export default function OurStore({
                         <p className="mb-0">
                           {filterProducts?.length} products
                         </p>
-                        <ToggleGrid grid={grid} onChange={handleChange} />
+                        <ToggleGrid grid={grid} onGridChange={onGridChange} />
                       </div>
                     </div>
                   </FilterSortGrid>

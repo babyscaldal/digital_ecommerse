@@ -70,7 +70,9 @@ function App() {
   const isLogin = useAppSelector(isLoginState);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemPerPage = 6;
+  const [grid, setGrid] = useState<number | null>(null);
+  // const itemPerPage = 6;
+  const [itemPerPage, setItemPerPage] = useState(6);
 
   const startItem = (currentPage - 1) * itemPerPage;
   const endItem = startItem + itemPerPage;
@@ -84,6 +86,27 @@ function App() {
   const handleCategoryChange = () => {
     setCurrentPage(1);
   };
+
+  const handleGridChange = (value: number) => {
+    setGrid(value);
+  };
+
+  useEffect(() => {
+    switch (grid) {
+      case 12:
+        setItemPerPage(4);
+        return;
+      case 6:
+        setItemPerPage(4);
+        return;
+      case 4:
+        setItemPerPage(6);
+        return;
+
+      default:
+        break;
+    }
+  }, [grid]);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -141,6 +164,9 @@ function App() {
             path: "products",
             element: (
               <OurStore
+                itemPerPage={itemPerPage}
+                grid={grid}
+                onGridChange={handleGridChange}
                 onCategoryChange={handleCategoryChange}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
@@ -153,11 +179,15 @@ function App() {
               },
               {
                 path: "all",
-                element: <ProductsList listItem={displayedProducts} />,
+                element: (
+                  <ProductsList grid={grid} listItem={displayedProducts} />
+                ),
               },
               {
                 path: ":category",
-                element: <ProductsList listItem={displayedProducts} />,
+                element: (
+                  <ProductsList grid={grid} listItem={displayedProducts} />
+                ),
               },
             ],
           },
@@ -233,7 +263,7 @@ function App() {
         element: <Checkout />,
       },
     ]);
-  }, [handleCategoryChange, displayedProducts, currentPage, handlePageChange]);
+  }, [currentPage, grid, displayedProducts, isLogin, itemPerPage]);
 
   return (
     <PayPalScriptProvider options={{ clientId: CLIENT_ID }}>

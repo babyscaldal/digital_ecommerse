@@ -27,6 +27,7 @@ import {
 
 interface IProductCard {
   product: IProductResponse;
+  grid?: number;
 }
 
 const ActionBar = styled.div`
@@ -104,7 +105,7 @@ const WishListIcon = styled.div`
   left: 5px;
 `;
 
-export default function ProductCard({ product }: IProductCard) {
+export default function ProductCard({ product, grid }: IProductCard) {
   const dispatch = useAppDispatch();
 
   const favoriteProducts = useAppSelector(favoriteProductsState);
@@ -145,7 +146,7 @@ export default function ProductCard({ product }: IProductCard) {
         <Card>
           <Container>
             <Row>
-              <Col xs={12}>
+              <Col xs={grid !== 12 ? 12 : 3}>
                 <div className="d-flex justify-content-center align-items-center">
                   <Card.Img
                     style={{
@@ -158,7 +159,7 @@ export default function ProductCard({ product }: IProductCard) {
                   />
                 </div>
               </Col>
-              <Col xs={12}>
+              <Col xs={grid !== 12 ? 12 : 8}>
                 <Card.Body>
                   <Category>{product?.category?.toUpperCase()}</Category>
                   <Title>{product?.title}</Title>
